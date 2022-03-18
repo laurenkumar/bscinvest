@@ -11,6 +11,9 @@ Its possible you have the reload the webpage to see the updated list
 
 BZZ link: https://bah5acgza42imbfxsrsh4wg6s5cfgpyacdxiuxq5cpph45f247p7fct3r3aeq.bzz.link/
 
+## To Do
+- Use Covalent API
+
 Video demo:
 https://vimeo.com/689729629/7de8af6b79
 
