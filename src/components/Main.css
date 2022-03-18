@@ -190,9 +190,9 @@ marquee span:before {
 .svg-title {
   position: absolute;
   z-index: -1;
-  width: 12vw;
-  left: -5%;
-  top: -13%;
+  width: 90px;
+  left: 0%;
+  top: 0%;
 }
 
 text { 
@@ -264,4 +264,26 @@ text {
     .coin-compare-init .first-coin {
         justify-content: space-between !important;
     }
+}
+
+.main-mobile {
+  width: 100vw;
+  min-height: 100vh;
+  height: 100vh;
+  max-height: 800px;
+  padding: 10vh 4px 2vh 4px;
+  position: relative;
+}
+
+.main-mobile .userWallet .coin-app > div {
+  width: 100%;
+}
+
+.main-mobile h2.select-token {
+  display: block;
+  text-align: initial;
+}
+
+.main-mobile .select-token > div {
+  margin-left: 0;
 }

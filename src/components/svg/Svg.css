@@ -1,7 +1,8 @@
 .footer-svg {
   visibility: hidden;
   position: absolute;
-  width: 15vw;
-  bottom: 1vh;
+  width: 200px;
+  bottom: 0%;
+  left: 0%;
   z-index: -1;
 }

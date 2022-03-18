@@ -6,11 +6,11 @@ import PropTypes from 'prop-types';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import "./SafemoonStats.css";
+import "./TokenStats.css";
 import Select from 'react-select';
 import { useLocalStorage } from "../../helpers/useLocalStorage";
 
-function SafemoonStats() {
+function TokenStats() {
   let count = 1;
   let count2 = 1;
   const [address, setAddress] = useLocalStorage("address", "");
@@ -309,7 +309,6 @@ function SafemoonStats() {
             </div>
             }
           </div>
-          <span className="card-pin second-pin"></span>
         </div>
 
       </section>
@@ -358,7 +357,6 @@ function SafemoonStats() {
                   </div>
                 </div>
               </div>
-              <span className="card-pin second-pin"></span>
             </div>
             ))}
         </section>
@@ -398,4 +396,4 @@ function SafemoonStats() {
   );
 }
 
-export default SafemoonStats;
+export default TokenStats;

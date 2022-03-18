@@ -47,7 +47,7 @@ body {
   }
 }
 
-main {
+.main {
   max-width: 100%;
   display: grid;
   height: 100vh;
@@ -60,14 +60,14 @@ main {
   position: relative;
 }
 @media screen and (max-width: 768px) {
-  main {
+  .main {
     grid-template-columns: 25% 75%;
     width: 100%;
     max-width: none;
   }
 }
 @media screen and (max-width: 560px) {
-  main {
+  .main {
     grid-template-columns: 100%;
   }
 }

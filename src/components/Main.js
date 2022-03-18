@@ -7,13 +7,12 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import SafemoonStats from "./safemoonStats/SafemoonStats";
+import TokenStats from "./tokenStats/TokenStats";
 import AddressAndTokens from "./addressAndTokens/AddressAndTokens";
-import Whales from "./whales/Whales";
 import Blog from "./blog/Blog";
 import Svg from "./svg/Svg";
-import CompareCoins from "./compareCoins/CompareCoins";
 import {useStateValue} from "../StateProvider";
+import MediaQuery from 'react-responsive';
 
 const useStyles = makeStyles({
   root: {
@@ -51,34 +50,46 @@ function Main() {
   const classes = useStyles();
 
   return (
-    <main className="main">
+    <>
       <svg className="svg-title" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 500">
-        <defs>
-          <path d="M50,250c0-110.5,89.5-200,200-200s200,89.5,200,200s-89.5,200-200,200S50,360.5,50,250" id="textcircle">
-            <animateTransform
-                    attributeName="transform"
-                    begin="0s"
-                    dur="30s"
-                    type="rotate"
-                    from="0 250 250"
-                    to="360 250 250"
-                    repeatCount="indefinite" 
-            />
-          </path>
-        </defs>
-        <text dy="70" textLength="1220">
-          <textPath xlinkHref="#textcircle">Your Crypto Corner</textPath>
-        </text>
+            <defs>
+              <path d="M50,250c0-110.5,89.5-200,200-200s200,89.5,200,200s-89.5,200-200,200S50,360.5,50,250" id="textcircle">
+                <animateTransform
+                        attributeName="transform"
+                        begin="0s"
+                        dur="30s"
+                        type="rotate"
+                        from="0 250 250"
+                        to="360 250 250"
+                        repeatCount="indefinite" 
+                />
+              </path>
+            </defs>
+            <text dy="70" textLength="1220">
+              <textPath xlinkHref="#textcircle">Your Crypto Corner *</textPath>
+            </text>
       </svg>
-      <div className='coin-app header-container'>
-        <AddressAndTokens />
-        <div className="safemoon-dashboard">
-          <SafemoonStats/>
-        </div>
-      </div>
-      <Blog />
+      <MediaQuery minWidth={1400}>
+        <main className="main">
+          <div className='coin-app header-container'>
+            <AddressAndTokens />
+            <div className="safemoon-dashboard">
+              <TokenStats/>
+            </div>
+          </div>
+          <Blog />
+        </main>
+      </MediaQuery>
+      <MediaQuery maxWidth={1399}>
+        <main className="main-mobile">
+          <AddressAndTokens />
+          <div className="safemoon-dashboard">
+            <TokenStats/>
+          </div>
+        </main>
+      </MediaQuery>
       <Svg />
-    </main>
+    </>
   );
 }
 export default Main;

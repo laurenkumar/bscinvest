@@ -75,6 +75,11 @@ section div .card-pin.second-pin {
     min-width: 345px;
 }
 
+.main-mobile .token-select {
+    max-width:  150px;
+    min-width: 100%;
+}
+
 .token-select > div {
     background-color: #948be9;
     border: none;
@@ -85,6 +90,10 @@ div[class*="-IndicatorsContainer"] {
     display: none;
 }
 
+div[class*="-IndicatorsSeparator"] {
+    display: none;
+}
+
 div[class*="-placeholder"] {
     color: #e9bf8b;
     text-decoration: underline;
@@ -92,6 +101,11 @@ div[class*="-placeholder"] {
 
 div[class*="singleValue"] {
     color: #e9bf8b;
+    font-size: 1em;
+}
+
+.main-mobile h1, h2, h3, h4, h5, h6, strong, .blog-right-title {
+    font-size: 35px !important;
 }
 
 .select-token {
