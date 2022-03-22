@@ -7,7 +7,7 @@ Looking into adding others but have to think of the UI.
 No data is stored on any database, the only storage used is LocalStorage so that the user does not have to retype its wallet address.
 Will add a connect button to directly connect to metamask or others.
 
-Its possible you have the reload the webpage to see the updated list
+Its possible you have to reload the webpage to see the updated list
 
 BZZ link: https://bah5acgza42imbfxsrsh4wg6s5cfgpyacdxiuxq5cpph45f247p7fct3r3aeq.bzz.link/
 
