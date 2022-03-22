@@ -1,4 +1,4 @@
-Your crypto Corner
+## Your crypto Corner
 
 A simple webpage where the user just have to paste its wallet adress to see a list of all the tokens he have and upon selection see the stats of each of them, their last news and their possible price if they reached the market cap of the top 10 cryptos.
 As of now only the bsc network is supported.
