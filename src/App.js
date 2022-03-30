@@ -19,17 +19,6 @@ const elFonts = [
 
 function App() {
   const location = useLocation();
-  const [{ user, cart }, dispatch] = useStateValue();
-  const loadingBar = useRef(null);
-
-  useEffect(() => {
-    if (loadingBar) {
-      dispatch({
-        type: "LOADING_BAR",
-        loadingBar: loadingBar,
-      });
-    }
-  }, [loadingBar]);
 
   return (
     <div className="app">

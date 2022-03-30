@@ -35,3 +35,8 @@
 	color: #e9bf8b;
 	margin-left: 5px;
 }
+
+.network-container h2.coin-text {
+    margin-left: 1rem;
+    margin-top: 2rem;
+}

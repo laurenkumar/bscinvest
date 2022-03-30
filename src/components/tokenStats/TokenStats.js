@@ -17,15 +17,21 @@ function TokenStats(address) {
   const [topToken, setTopToken] = useState(null);
   const [tokenNews, setTokenNews] = useState(null);
   const [selectedToken, setSelectedToken] = useState(null);
-  const [pancake, setPancakePrice] = useState("");
 
   const getNumber = function(num) {
-    const units = ["M","B","T","Q"]
-    const unit = Math.floor((num / 1.0e+1).toFixed(0).toString().length);
-    const r = unit%3;
-    const x =  Math.abs(Number(num))/Number('1.0e+'+(unit-r)).toFixed(2);
-
-    return x.toFixed(2) + units[Math.floor(unit / 3) - 2];
+    if (num >= 1000000000000) {
+        return (num / 1000000000000).toFixed(1).replace(/\.0$/, '') + 'T';
+     }
+     if (num >= 1000000000) {
+        return (num / 1000000000).toFixed(1).replace(/\.0$/, '') + 'B';
+     }
+     if (num >= 1000000) {
+        return (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+     }
+     if (num >= 1000) {
+        return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+     }
+     return num;
   }
 
   function insertDecimal(num, decimal) {
@@ -69,33 +75,13 @@ function TokenStats(address) {
 
   const handleChange = async (e) => {
     setSelectedToken(e);
-    console.log(address)
-    axios.get(`https://api.bscscan.com/api?module=account&action=tokentx&contractaddress=` + e.value + `&address=` + address.address + `&startblock=0&endblock=999999999&sort=asc&apikey=DG87ABXXWMX1NV9BDFXJFUXVK34J9DRQJP`)
-        .then(res => {
-          setFirstBought(moment.unix(res.data.result[0].timeStamp).format("MMM Do YY"))
-          setOriginalPrice(insertDecimal(res.data.result[0].value, res.data.result[0].tokenDecimal));
-          axios.get(`https://api.coingecko.com/api/v3/coins/` + e.label.toLowerCase() + `/history?date=` + moment.unix(res.data.result[0].timeStamp).format("DD-MM-YYYY"))
-            .then(res2 => {
-              const quantityBought = res.data.result[0].value / 10**res.data.result[0].tokenDecimal;
-              setFirstPrice(res2.data.market_data.current_price.usd * quantityBought);
-          })
-            .catch(err => {
-              setFirstPrice();
-          });
-    });
-
-    axios.get(`https://api.coingecko.com/api/v3/coins/binance-smart-chain/contract/` + e.value)
+    axios.get(`https://api.coingecko.com/api/v3/coins/` + address.network + `/contract/` + e.value)
       .then(res => {
         setStats(res.data);
     })
       .catch(err => {
         setStats();
     });
-
-    axios.get(`https://api.pancakeswap.info/api/v2/tokens/` + e.value).then(res=>{
-      const pancakePrice = parseFloat(res.data.data.price);
-      setPancakePrice(pancakePrice);
-    }).catch(err => console.log(err));
 
     axios
       .get(
@@ -135,7 +121,7 @@ function TokenStats(address) {
             {stats ?
             <div>
               <div className="your-stats-container">
-                <p>You bought {originalPrice} of this token on {firstBought} {firstPrice ? "for " + firstPrice?.toFixed(2) + "$" : ""}</p>
+                <p>You have {insertDecimal(selectedToken?.balance, selectedToken.decimals)} of this token currently valued {selectedToken.quote} $</p>
               </div>
               {stats?.public_notice ?
               <div className="public-notice" dangerouslySetInnerHTML={{ __html: stats?.public_notice }} />
@@ -151,20 +137,20 @@ function TokenStats(address) {
               </div> 
               <div className="flex justify-content-between">
                 <div>
-                  <span className="small-title">Market Cap
+                  <span className="small-title">MCap
                   </span> 
                   <div className="center">{stats?.market_data?.market_cap?.usd > 999999 ? getNumber(stats?.market_data?.market_cap?.usd) : stats?.market_data?.market_cap?.usd}
                   </div>
                 </div> 
                 <div>
-                  <span className="small-title">Circulating Supply
+                  <span className="small-title">Circulating Sup
                   </span> 
                   <div className="center">
                     <span>{stats?.market_data?.circulating_supply > 999999 ? getNumber(stats?.market_data?.circulating_supply) : stats?.market_data?.circulating_supply}</span> 
                   </div>
                 </div> 
                 <div>
-                  <span className="small-title">Total Supply</span> 
+                  <span className="small-title">Total Sup</span> 
                   <div className="center">{getNumber(stats?.market_data?.total_supply)}</div>
                 </div>
               </div>  
@@ -174,12 +160,6 @@ function TokenStats(address) {
                 </div> 
                 <span className="crypto-caption">{getSupplyDone()}% of total supply ({getNumber(stats?.market_data?.total_supply)})
                 </span> 
-              </div>
-              <div className="flex pancake">
-                  <span className="bold">PancakeSwap (v2) Price
-                  </span> 
-                  <div className="bold">${parseFloat(pancake).toFixed(9).replace(/\.?0+$/,"")}
-                  </div>
               </div>
               <div>
                 <table>
