@@ -1,20 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import moment from 'moment';
-import BigNumber from "bignumber.js";
 import PropTypes from 'prop-types';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import "./TokenStats.css";
 import Select from 'react-select';
-import { useLocalStorage } from "../../helpers/useLocalStorage";
 
-function TokenStats() {
+function TokenStats(address) {
   let count = 1;
   let count2 = 1;
-  const [address, setAddress] = useLocalStorage("address", "");
-  const [tokens, setTokens] = useLocalStorage("tokens", "[]");
   const [stats, setStats] = useState(null);
   const [firstBought, setFirstBought] = useState(null);
   const [firstPrice, setFirstPrice] = useState(null);
@@ -74,8 +69,8 @@ function TokenStats() {
 
   const handleChange = async (e) => {
     setSelectedToken(e);
-
-    axios.get(`https://api.bscscan.com/api?module=account&action=tokentx&contractaddress=` + e.value + `&address=` + address + `&startblock=0&endblock=999999999&sort=asc&apikey=DG87ABXXWMX1NV9BDFXJFUXVK34J9DRQJP`)
+    console.log(address)
+    axios.get(`https://api.bscscan.com/api?module=account&action=tokentx&contractaddress=` + e.value + `&address=` + address.address + `&startblock=0&endblock=999999999&sort=asc&apikey=DG87ABXXWMX1NV9BDFXJFUXVK34J9DRQJP`)
         .then(res => {
           setFirstBought(moment.unix(res.data.result[0].timeStamp).format("MMM Do YY"))
           setOriginalPrice(insertDecimal(res.data.result[0].value, res.data.result[0].tokenDecimal));
@@ -132,7 +127,7 @@ function TokenStats() {
                 value={selectedToken}
                 defaultValue={selectedToken}
                 onChange={(setSelectedToken) => handleChange(setSelectedToken)}
-                options={tokens}
+                options={address.tokens}
                 placeholder=". . ."
                 className="token-select"
               />

@@ -1,0 +1,37 @@
+.networks-container {
+	justify-content: space-between;
+	flex-wrap: wrap;
+	-webkit-flex-wrap: wrap;
+	display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+	display: -moz-flex;
+	display: -webkit-flex;
+	display: flex;
+	padding: 1rem;
+}
+.network {
+  padding: 5px;
+  max-width: 200px;
+  border-radius: 0.5rem;
+  line-height: 20px;
+  border: none;
+  margin: 0 10px 20px 0;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  overflow: hidden;
+  font-weight: bold;
+  font-size: 12px;
+  text-align: center;
+  background-color: #948be9;
+  box-shadow: 0 6px 10px 0 rgb(31 38 135 / 37%);
+  transition: transform .2s,box-shadow .2s;
+}
+
+.network span {
+	color: #e9bf8b;
+	margin-left: 5px;
+}

@@ -7,12 +7,12 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import TokenStats from "./tokenStats/TokenStats";
 import AddressAndTokens from "./addressAndTokens/AddressAndTokens";
 import Blog from "./blog/Blog";
 import Svg from "./svg/Svg";
 import {useStateValue} from "../StateProvider";
 import MediaQuery from 'react-responsive';
+import { useLocalStorage } from "../helpers/useLocalStorage";
 
 const useStyles = makeStyles({
   root: {
@@ -47,7 +47,12 @@ const iconStyle = (fontsize) => {
 };
 
 function Main() {
+  const [address, setAddress] = useLocalStorage("address", "");
   const classes = useStyles();
+
+  function handleChange(address) {
+    setAddress(address);
+  }
 
   return (
     <>
@@ -72,20 +77,14 @@ function Main() {
       <MediaQuery minWidth={1400}>
         <main className="main">
           <div className='coin-app header-container'>
-            <AddressAndTokens />
-            <div className="safemoon-dashboard">
-              <TokenStats/>
-            </div>
+            <AddressAndTokens address={address} onChange={handleChange}/>
           </div>
           <Blog />
         </main>
       </MediaQuery>
       <MediaQuery maxWidth={1399}>
         <main className="main-mobile">
-          <AddressAndTokens />
-          <div className="safemoon-dashboard">
-            <TokenStats/>
-          </div>
+          <AddressAndTokens address={address} onChange={handleChange}/>
         </main>
       </MediaQuery>
       <Svg />

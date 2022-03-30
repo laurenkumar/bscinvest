@@ -6,7 +6,6 @@ import "./Blog.css";
 function Blog() {
   let count = 1;
   const [tokenLargeNews, setTokenLargeNews] = useState(null);
-  const [globalNews, setGlobalNews] = useState(null);
 
   useEffect(()=> {
     const apiKey = "3663a9f5329764cf1780627b1a669d96";
@@ -16,18 +15,17 @@ function Blog() {
         setTokenLargeNews(res.data)
     });
 
-    const global = `https://gnews.io/api/v4/search?q=market&max=3&token=${apiKey}`;
-    axios.get(global).then(res => {
-        setGlobalNews(res.data)
-    });
   },[]);
 
   return (
     <div className="blog-part right-blog">
       <marquee width="100%" direction="left">
-        {globalNews?.articles.map((article) => (
-          <a key={article.title} href={article.url} target="_blank"><span>{article.title}</span></a>
-        ))}
+          <a href="https://cryptonews.com/" target="_blank"><span>Crypto News</span></a>
+          <a href="https://cryptonews.com/" target="_blank"><span>Crypto News</span></a>
+          <a href="https://cryptonews.com/" target="_blank"><span>Crypto News</span></a>
+          <a href="https://cryptonews.com/" target="_blank"><span>Crypto News</span></a>
+          <a href="https://cryptonews.com/" target="_blank"><span>Crypto News</span></a>
+          <a href="https://cryptonews.com/" target="_blank"><span>Crypto News</span></a>
       </marquee>
       <div className="blog-right-title-container">
         <div className="blog-right-title">
