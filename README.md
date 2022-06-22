@@ -4,9 +4,12 @@ A simple webpage where the user just have to paste its wallet adress to see a li
 All network present on the Covalent API have been added.
 No data is stored on any database, the only storage used is LocalStorage so that the user does not have to retype its wallet address.
 No button to connect the user wallet will be added as I feel it would not be a good move UX wise.
+You can now buy crypto via Transak.
 
 BZZ link: https://bah5acgza2i2uimzoc246um67bu4xujyr3e7kav6r3rtax5od67fu4rojv3eq.bzz.link/
 Also available at: https://bscinvest.vercel.app
+
+## Transak Integration, buy your crypto
 
 ## Covalent API Endpoints used
 - /v1/chains/ Returns a list of all chains.
