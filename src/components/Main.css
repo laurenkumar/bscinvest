@@ -12,6 +12,14 @@
   }
 }
 
+.modalButton {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    color: tan;
+    z-index:99;
+}
+
 input, select, textarea{
     color: #000;
     z-index: 1;

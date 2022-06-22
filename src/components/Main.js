@@ -76,7 +76,7 @@ function Main() {
               <textPath xlinkHref="#textcircle">Your Crypto Corner *</textPath>
             </text>
       </svg>
-      <button className="network" onClick={() => setIsOpen(true)}>
+      <button className="network modalButton" onClick={() => setIsOpen(true)}>
         Buy Crypto
       </button>
       {isOpen && <Modal setIsOpen={setIsOpen} />}

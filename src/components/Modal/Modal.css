@@ -14,11 +14,12 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 100;
 }
 
 .modal {
-  width: 250px;
-  height: 170px;
+  width: 400px;
+  height: 100vh;
   background: white;
   color: white;
   z-index: 10;
