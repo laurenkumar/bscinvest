@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import AddressAndTokens from "./addressAndTokens/AddressAndTokens";
 import Blog from "./blog/Blog";
 import Svg from "./svg/Svg";
+import Modal from "./Modal/Modal";
 import {useStateValue} from "../StateProvider";
 import MediaQuery from 'react-responsive';
 import { useLocalStorage } from "../helpers/useLocalStorage";
@@ -48,6 +49,7 @@ const iconStyle = (fontsize) => {
 
 function Main() {
   const [address, setAddress] = useLocalStorage("address", "");
+  const [isOpen, setIsOpen] = useState(false);
   const classes = useStyles();
 
   function handleChange(address) {
@@ -74,6 +76,10 @@ function Main() {
               <textPath xlinkHref="#textcircle">Your Crypto Corner *</textPath>
             </text>
       </svg>
+      <button className="network" onClick={() => setIsOpen(true)}>
+        Buy Crypto
+      </button>
+      {isOpen && <Modal setIsOpen={setIsOpen} />}
       <MediaQuery minWidth={1400}>
         <main className="main">
           <div className='coin-app header-container'>
