@@ -16,7 +16,7 @@ Also available at: https://bscinvest.vercel.app
 - /v1/chain_id/address/address/balances_v2/ Get token balances for address
 
 ## Video demo:
-https://vimeo.com/694040085
+https://vimeo.com/723092237
 
 ## How to run:
 Install the dependencies
