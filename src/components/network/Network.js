@@ -11,7 +11,7 @@ function Network(address) {
   const [networkSelected, setNetworkSelected] = useState(null);
 
   useEffect(()=> {
-     axios.get(`https://api.covalenthq.com/v1/chains/?quote-currency=USD&format=JSON&key=$(process.env.REACT_APP_KEY)`)
+     axios.get(`https://api.covalenthq.com/v1/chains/?quote-currency=USD&format=JSON&key=${process.env.REACT_APP_KEY}`)
         .then(res => {
           const mainNetworks = res.data.data.items.filter(x => x.is_testnet === false);
           setNetworks(mainNetworks);
